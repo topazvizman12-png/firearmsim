@@ -1,0 +1,400 @@
+/* Font options: */ /* הערת פתיחה: מסבירה למה נבחרו הפונטים בפרויקט LuxSense */
+ /* - Poppins: modern, rounded, friendly */ /* Poppins: מראה מודרני ונעים, מתאים לממשק משתמש */
+ /* - Roboto: clean, neutral, very readable */ /* Roboto: קריא מאוד לטקסטים ארוכים */
+ /* - Montserrat: geometric, bold for headings */ /* Montserrat: כותרות מודגשות ומסודרות */
+
+/* Default: Poppins for body, Montserrat for titles. */ /* ברירת מחדל: גוף טקסט Poppins, כותרות Montserrat */
+
+:root { /* משתני CSS גלובליים: מוגדרים פעם אחת ומשמשים בכל האתר */
+  --font-body: 'Poppins', 'Roboto', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; /* פונט בסיס לכל הטקסטים */
+  --font-heading: 'Montserrat', 'Poppins', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; /* פונט לכותרות/מותג */
+} /* סוף הגדרת משתנים */
+
+* { /* בורר כללי: משפיע על כל האלמנטים בדף */
+  box-sizing: border-box; /* חישוב רוחב/גובה כולל padding+border → מונע “בריחות” בעיצוב */
+} /* סוף כללי box-sizing */
+
+/* ============================= */
+/* RTL / Hebrew support (minimal) */
+/* תמיכה בעברית + יישור לימין בלי לשבור Bootstrap */
+/* ============================= */
+html[dir="rtl"], body { /* ברגע שב-HTML יש dir="rtl" כל האתר יתיישר טבעי לעברית */
+  direction: rtl; /* כיוון כתיבה מימין לשמאל */
+} /* סוף RTL */
+
+body { /* עיצוב כללי לכל גוף האתר */
+  font-family: var(--font-body); /* שימוש במשתנה הגלובלי של פונט הגוף */
+  background-color: #f7f8fb; /* צבע רקע בהיר ונקי */
+  color: #1f2933; /* צבע טקסט כהה לקריאות גבוהה */
+  text-align: right; /* יישור ברירת מחדל לימין */
+  overflow-x: hidden; /* מונע גלילה אופקית */
+} /* סוף body */
+
+/* Navbar tweaks */ /* מקטע התאמות לתפריט העליון (Navbar) */
+.navbar-brand span { /* הספאן שבתוך שם המותג בתפריט */
+  font-family: var(--font-heading); /* פונט לכותרות/מותג */
+  letter-spacing: 0.04em; /* ריווח אותיות קל */
+} /* סוף עיצוב מותג */
+
+.navbar .nav-link.active { /* קישור פעיל בתפריט (העמוד הנוכחי) */
+  font-weight: 600; /* הדגשה */
+  color:#961615 !important; /* צבע מותאם */
+} /* סוף active */
+
+/* התאמה קטנה ל-navbar ב-RTL: הקישורים יישבו יפה מימין */
+html[dir="rtl"] .navbar .navbar-nav { /* רשימת קישורי הניווט */
+  margin-right: 0; /* איפוס מרווחים */
+} /* סוף התאמת navbar */
+
+/* ============================= */
+/* Hero section (FIXED: proportional image) */
+/* מקטע “Hero” = תמונת רקע בפרופורציה */
+/* ============================= */
+.hero-section {
+  width: 100%;
+  max-width: 100%;
+  overflow: hidden;
+  position: relative;
+
+  /* גובה מאוזן – גדול אבל לא ענק */
+  height: 80vh;
+  min-height: 520px;
+  max-height: 900px;
+
+  background-image: url("../img/background.png");
+
+  /* ⭐ הפתרון החשוב */
+  background-size: 100% auto;   /* ממלא רוחב, שומר פרופורציה */
+  background-position: center top;
+  background-repeat: no-repeat;
+
+  background-color: #0b0f14;    /* רקע ניטרלי למקרה של מסכים מאוד רחבים */
+
+  display: flex;
+  align-items: center;
+}
+.hero-section {
+  width: 100%;
+  height: 85vh;
+  min-height: 500px;
+
+  background-image: url("../img/hero.png");
+
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+
+  display: flex;
+  align-items: center;
+}
+/* אין כהות – מבטלים overlay */
+.hero-section .overlay {
+  display: none;
+}
+
+/* תוכן מעל התמונה */
+.hero-content {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 2rem;
+}
+
+/* כותרת */
+.hero-title {
+  font-family: var(--font-heading);
+  font-weight: 700;
+  font-size: clamp(2.2rem, 4vw, 3.2rem);
+  color: #ffffff;
+  margin-bottom: 1rem;
+}
+
+/* תת־כותרת */
+.hero-subtitle {
+  max-width: 600px;
+  font-size: 1.05rem;
+  line-height: 1.6;
+  color: #e5e7eb;
+}
+
+/* מובייל */
+@media (max-width: 768px) {
+  .hero-section {
+    height: 70vh;
+    min-height: 420px;
+    background-size: 100% auto;
+    background-position: center top;
+  }
+
+  .hero-content {
+    text-align: center;
+    padding: 1.5rem;
+  }
+
+  .hero-subtitle {
+    margin: 0 auto;
+  }
+} /* סוף hero-subtitle */
+
+/* Auth page */ /* מקטע עיצוב לעמוד התחברות/הרשמה (login.html) */
+.auth-page { /* עטיפה של עמוד ההתחברות */
+  min-height: calc(100vh - 56px - 56px);
+  background: radial-gradient(circle at top, #e3edff, #f7f8fb);
+  padding: 1rem;
+} /* סוף auth-page */
+
+.auth-card { /* כרטיס ההתחברות */
+  max-width: 420px;
+  width: 100%;
+} /* סוף auth-card */
+
+.auth-card .card-title { /* כותרת בתוך כרטיס ההתחברות */
+  font-family: var(--font-heading);
+} /* סוף card-title */
+
+/* Progress bar */
+.progress-bar {
+  transition: width 0.2s ease;
+} /* סוף progress-bar */
+
+/* Gallery */
+.gallery-grid .card-img-top {
+  height: 190px;
+  object-fit: cover;
+} /* סוף gallery */
+
+/* Footer */
+footer {
+  background-color: #ffffff;
+} /* סוף footer */
+
+/* Small text utility */
+.small-text {
+  font-size: 0.8rem;
+  color: #6b7280;
+} /* סוף small-text */
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .hero-section {
+    height: 360px;        /* נייד קטן יותר */
+    min-height: 360px;
+    background-position: center;
+  }
+
+  .hero-content {
+    text-align: center;
+    padding: 1.5rem;
+  }
+
+  .hero-subtitle {
+    margin: 0 auto;
+  }
+} /* סוף media query */
+
+
+/* ============================= */
+/* Bootstrap primary color override */
+/* ============================= */
+
+:root {
+  --bs-primary: #961615;
+  --bs-primary-rgb: 150, 22, 21;
+}
+
+/* כפתור רגיל */
+.btn-primary {
+  background-color: #961615;
+  border-color: #961615;
+}
+
+.btn-primary:hover,
+.btn-primary:focus {
+  background-color: #7d1211;
+  border-color: #7d1211;
+}
+
+/* כפתור outline */
+.btn-outline-primary {
+  color: #961615;
+  border-color: #961615;
+}
+
+.btn-outline-primary:hover {
+  background-color: #961615;
+  border-color: #961615;
+  color: #fff;
+}
+
+/* קישורים */
+a {
+  color: #961615;
+}
+
+a:hover {
+  color: #7d1211;
+}
+
+/* קישורים פעילים ב-navbar */
+.navbar .nav-link.active {
+  color: #961615 !important;
+}
+
+/* Progress bar */
+.progress-bar {
+  background-color: #961615;
+}
+
+.hero-start-btn {
+  margin-top: 100px;
+}
+
+/* ===== Mobile fix: prevent horizontal scroll ===== */
+html, body {
+  width: 100%;
+  overflow-x: hidden;
+}
+
+img, video {
+    max-width: 100%;
+    height: auto;
+}
+
+
+@media (max-width: 576px) {
+  .hero-section {
+    height: 55vh;
+    min-height: 360px;
+    max-height: 600px;
+    background-size: cover;
+    background-position: center;
+  }
+}
+/* Charts size */
+.chart-container {
+    width: 100%;
+    max-width: 320px;
+    height: 220px;
+    margin: 0 auto;
+}
+
+.chart-container canvas {
+    width: 100% !important;
+    height: 100% !important;
+}
+
+/* ===== Practice page bigger text ===== */
+
+/* כותרת */
+h2 {
+    font-size: 3rem;
+    font-weight: bold;
+}
+
+/* כפתור ראשי */
+#startPracticeBtn {
+    font-size: 1.8rem;
+    padding: 15px;
+}
+
+/* כל הקופסאות */
+.card.p-3 {
+    font-size: 1.5rem;
+}
+
+/* המספרים עצמם */
+#practiceStatusText,
+#practiceLiveTimerText,
+#practiceReactionText,
+#hitsText,
+#magazineText {
+    font-size: 2rem;
+    font-weight: bold;
+}
+
+/* כפתורים תחתונים */
+#trainingTimeBtn,
+#endPracticeBtn,
+#resetBtn {
+    font-size: 1.3rem;
+    padding: 10px 20px;
+}
+
+/* טבלה */
+table {
+    font-size: 1.2rem;
+}
+
+/* כותרות גרפים */
+.chart-card-small h5 {
+    font-size: 1.5rem;
+}
+
+/* ===== התאמה למסך טלפון ===== */
+@media (max-width: 576px) {
+
+    body {
+        font-size: 16px;
+    }
+
+    main.container {
+        padding: 20px 12px;
+    }
+
+    .card {
+        padding: 18px !important;
+        border-radius: 12px;
+    }
+
+    h2 {
+        font-size: 2.2rem;
+    }
+
+    #startPracticeBtn {
+        width: 100%;
+        font-size: 1.3rem;
+        padding: 12px;
+    }
+
+    .row {
+        gap: 10px;
+    }
+
+    .card.p-3 {
+        font-size: 1.2rem;
+    }
+
+    #practiceStatusText,
+    #practiceLiveTimerText,
+    #practiceReactionText,
+    #hitsText,
+    #magazineText {
+        font-size: 1.5rem;
+    }
+
+    #trainingTimeBtn,
+    #endPracticeBtn,
+    #resetBtn,
+    #resetTableBtn {
+        width: 100%;
+        margin-bottom: 10px;
+        font-size: 1.1rem;
+    }
+
+    .d-flex {
+        flex-direction: column;
+        gap: 10px;
+        text-align: center;
+    }
+
+    table {
+        font-size: 0.95rem;
+    }
+
+    .chart-container {
+        max-width: 100%;
+        height: 220px;
+    }
+}

@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+
+<head>
+    <meta charset="UTF-8">
+    <title>סימולטור ירי | התחברות</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Bootstrap -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- CSS שלך -->
+    <link rel="stylesheet" href="../css/styles.css">
+</head>
+
+<body class="bg-light d-flex align-items-center" style="min-height: 100vh;">
+
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-md-6 col-lg-5">
+
+            <div class="card shadow-sm border-0">
+                <div class="card-body p-4 p-md-5">
+
+                    <h2 class="text-center mb-4" id="authTitle">התחברות</h2>
+
+                    <!-- שגיאה -->
+                    <div id="loginError" class="text-danger small text-center mb-2"></div>
+
+                    <!-- התחברות -->
+                    <form id="signInForm">
+
+                        <div class="mb-3">
+                            <label class="form-label">אימייל</label>
+                            <input type="email" class="form-control" id="signInEmail" required>
+                        </div>
+
+                        <div class="mb-3">
+                            <label class="form-label">סיסמה</label>
+                            <input type="password" class="form-control" id="signInPassword" required>
+                        </div>
+
+                        <button type="submit" class="btn btn-danger w-100 mb-2">
+                            התחברות
+                        </button>
+
+                        <p class="text-center small">
+                            אין לך חשבון?
+                            <a href="#" id="toggleAuthMode">הרשמה</a>
+                        </p>
+
+                    </form>
+
+                    <!-- הרשמה -->
+                    <form id="signUpForm" class="d-none mt-3">
+
+                        <div class="mb-3">
+                            <label class="form-label">שם מלא</label>
+                            <input type="text" class="form-control" id="fullName" required>
+                        </div>
+
+                        <div class="mb-3">
+                            <label class="form-label">אימייל</label>
+                            <input type="email" class="form-control" id="signUpEmail" required>
+                        </div>
+
+                        <div class="mb-3">
+                            <label class="form-label">סיסמה</label>
+                            <input type="password" class="form-control" id="signUpPassword" required>
+                        </div>
+
+                        <div class="mb-4">
+                            <label class="form-label">טלפון</label>
+                            <input type="tel" class="form-control" id="phoneNumber">
+                        </div>
+
+                        <button type="submit" class="btn btn-primary w-100 mb-3">
+                            הרשמה
+                        </button>
+
+                        <p class="text-center small">
+                            כבר יש לך חשבון?
+                            <a href="#" id="toggleAuthModeBack">להתחברות</a>
+                        </p>
+
+                    </form>
+
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<!-- Bootstrap -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+<!-- Firebase -->
+<script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-auth.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-database.js"></script>
+
+<!-- הקבצים שלך -->
+<script src="../js/firebaseconfig.js"></script>
+<script src="../js/auth.js"></script>
+
+</body>
+</html>
